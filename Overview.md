@@ -1,7 +1,22 @@
 
 # Confidential Containers
 We are interested in integrating existing [Trusted Execution Environments](https://en.wikipedia.org/wiki/Trusted_execution_environment) (TEE) 
-infrastructure support and technologies with the cloud native world. Our focus is to place a kubernetes pod into a TEE. 
+infrastructure support and technologies with the cloud native world. 
+
+Key considerations are:
+- Transparent deployment of unmodified containers
+- Support multiple TEE and hardware platforms
+- Introduce a trust model which separates Cloud Service Providers (CSPs) from guest applications
+- Apply least privilege principles to the Kubernetes Cluster administration capabilities which impact delivering Confidential 
+  Computing for guest application or data inside the TEE.
+
+TEE's can be used to encapsulate different levels of the architecture stack with three key levels being node v pod v container.
+We have initially focused on the pod level support for confidential computing, node level introduces significant challenges around
+least privilege for kubernetes cluster administration and container level introduces challenges around transparent deployment of unmodified containers.
+This initial pod level focus does not preclude use of container focused confidential computing
+technologies and that challenges explored will have relevance to the use of TEE's at both node and container level.
+
+
 
 ## Why?
 Security has long been a significant concern with data encryption at rest and in flight assumed to be a key part of any offering.
