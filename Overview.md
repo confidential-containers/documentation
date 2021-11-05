@@ -5,6 +5,7 @@ We are interested in integrating existing [Trusted Execution Environments](https
 (TEE) infrastructure support and technologies with the cloud native world. 
 
 Key considerations are:
+- Allow cloud native application owners to enforce application security requirements
 - Transparent deployment of unmodified containers
 - Support multiple TEE and hardware platforms
 - Introduce a trust model which separates Cloud Service Providers (CSPs) from guest applications
@@ -12,12 +13,13 @@ Key considerations are:
   impact delivering Confidential Computing for guest application or data inside the TEE.
 
 TEE's can be used to encapsulate different levels of the architecture stack with three key levels
-being node v pod v container. We have initially focused on the pod level support for confidential
-computing, node level introduces significant challenges around least privilege for kubernetes
-cluster administration and container level introduces challenges around transparent deployment of
-unmodified containers.  This initial pod level focus does not preclude use of container focused
-confidential computing technologies and that challenges explored will have relevance to the use of
-TEE's at both node and container level.
+being node v pod v container. Container isolation was initially
+[provided in kata-containers](https://github.com/kata-containers/kata-containers/blob/main/docs/use-cases/using-Intel-SGX-and-kata.md).
+As an outgrowth of that project we are now expanding to address pod level support for confidential
+computing. Node level introduces significant challenges around least privilege for kubernetes
+cluster administration. We will explore the combination of pod and container level isolation, and we
+expect that challenges explored will have relevance to future understanding of the use of TEE's at
+the node level.
 
 
 ## Why?
@@ -43,6 +45,7 @@ and growing in the future.
 
 We are actively working to support multiple TEE Technologies
 - AMD Secure Encrypted Virtualization(SEV, SEV-ES)
+- Intel Software Guard Extensions (SGX)
 - Intel Trusted Domain Extensions (TDX)
 - IBM 
   - Protected Execution Facility (PEF)
@@ -54,8 +57,8 @@ We are actively working to support multiple TEE Technologies
 The TEE seeks to protect the Application and Data from outside threats, with the Application owner
 having complete control of all communication across the TEE boundary. The application is considered
 a single complete entity and once supplied with the resources it requires, the TEE protects those
-resource (memory cpu) from the infrastructure and all communication across the TEE boundary is under
-the control of the Application Owner.
+resources (memory and cpu) from the infrastructure and all communication across the TEE boundary is
+under the control of the Application Owner.
 
 ### Cloud Native Execution Environments 
 ![TEE protects an orchestrated pod](./images/CloudNativeTEEProtection.png)
