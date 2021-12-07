@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ra-tls-secret-prov
+  namespace: cc-gramine-demo
+spec:
+  selector:
+    app: ra-tls-secret-prov
+  ports:
+  - protocol: TCP
+    port: 4433
+  type: ClusterIP

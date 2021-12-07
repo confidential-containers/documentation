@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: cc-gramine-demo
+
+resources:
+- service.yaml
+- ra-tls-secret-prov.yaml
+- ra-tls-secret-prov-cert.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+# Use the generated wrap-key from the image build (see Dockerfile)
+configMapGenerator:
+- name: ra-tls-secret-key
+  files:
+  - wrap-key
+- name: sgx-attestation-conf
+  files:
+  - sgx_default_qcnl.conf

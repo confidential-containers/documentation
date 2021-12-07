@@ -1,0 +1,54 @@
+# NB: sidecars do not play nicely with Jobs (Completion failures) but
+# we'll need aesmd here for now. The Pod results in error but the
+# Pytorch job completes OK.
+#
+# intel/sgx-aesmd-demo:devel Dockerfile is maintained in Intel Device Plugins
+# for Kubernetes demo directory.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gramine-sgx-pytorch-job
+spec:
+  template:
+    spec:
+      # init-sgx-devs is needed due to backwards compatibility: aesmd tries to open /dev/sgx/* files
+      # but the in-tree SGX driver creates /dev/sgx_*.
+      initContainers:
+      - name: init-sgx-devs
+        image: busybox
+        command: ['sh', '-c', 'mkdir /dev/sgx; ln -s /dev/sgx_enclave /dev/sgx/enclave; ln -s /dev/sgx_provision /dev/sgx/provision']
+        volumeMounts:
+        - mountPath: /dev
+          name: dev-mount
+      containers:
+      - name: aesmd
+        securityContext:
+          capabilities:
+            add: ["IPC_LOCK"]
+        image: intel/sgx-aesmd-demo:devel
+        resources:
+          limits:
+            sgx.intel.com/epc: "512Ki"
+        volumeMounts:
+        - name: aesmdconf
+          mountPath: /etc/aesmd.conf
+          subPath: aesmd.conf
+        - name: qplconf
+          mountPath: /etc/sgx_default_qcnl.conf
+          subPath: sgx_default_qcnl.conf
+      volumes:
+      - name: dev-mount
+        hostPath:
+          path: /dev
+      - name: aesmdconf
+        configMap:
+          name: sgx-aesmd-attestation-conf
+          items:
+          - key: aesmd.conf
+            path: aesmd.conf
+      - name: qplconf
+        configMap:
+          name: sgx-aesmd-attestation-conf
+          items:
+          - key: sgx_default_qcnl.conf
+            path: sgx_default_qcnl.conf

@@ -1,0 +1,41 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gramine-sgx-pytorch-job
+  labels:
+    jobgroup: cc-gramine-demo
+spec:
+  template:
+    metadata:
+      labels:
+        jobgroup: cc-gramine-demo
+    spec:
+      restartPolicy: Never
+      dnsPolicy: ClusterFirst
+      containers:
+        - image: docker.io/library/gramine:devel
+          name: gramine-sgx-pytorch-job
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            capabilities:
+              add: ["IPC_LOCK"]
+          resources:
+            requests:
+              cpu: "2000m"
+              memory: "4096Mi"
+            limits:
+              sgx.intel.com/epc: "20Gi"
+          volumeMounts:
+            - name: encrypted-result
+              mountPath: "/mnt/pytorch"
+            - name: gramine-sgx-pytorch-cert
+              mountPath: "/mnt/certs"
+              readOnly: true
+      volumes:
+        - name: encrypted-result
+          hostPath:
+            path: /tmp/pytorch-result
+            type: DirectoryOrCreate
+        - name: gramine-sgx-pytorch-cert
+          secret:
+            secretName: gramine-sgx-pytorch-cert

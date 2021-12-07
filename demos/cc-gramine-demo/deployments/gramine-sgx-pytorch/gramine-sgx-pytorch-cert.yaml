@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: gramine-sgx-pytorch-cert
+  namespace: cc-gramine-demo
+spec:
+  secretName: gramine-sgx-pytorch-cert
+  subject:
+    organizations:
+    - cc-gramine-demo
+  commonName: gramine-sgx-pytorch
+  dnsNames:
+  - gramine-sgx-pytorch-gramine-demo.svc.cluster.local
+  issuerRef:
+    name: ccg-ca-issuer
+    kind: Issuer
+    group: cert-manager.io

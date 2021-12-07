@@ -1,0 +1,8 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: ccg-ca-issuer
+  namespace: cc-gramine-demo
+spec:
+  ca:
+    secretName: ccg-ca-key-pair
