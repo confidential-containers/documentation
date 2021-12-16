@@ -122,31 +122,67 @@ steps to ensure the integrity of the code and that the data is appropriately pro
 wish to maintain confidentiality of their code from other personas.
 
 
-## Lifecycle stages
+## Lifecycle 
+The Cloud Native security Paper [^2] describes the lifecycle relating to workloads in four phases 
+- Develop
+- Distribute
+- Deploy
+- Runtime
 
-**We need to align this with the Lifecycle part of the CNCF whitepaper document?****
-![Lifecycle stages](./images/LifecycleStages.png)
+When we consider confidential containers there are lifecycle phases required before arriving at 
+the runtime environment in which the workload is truely confidential. Threats can exist during 
+these lifecycle phases and trust must be considered in the context of the lifecycle of the 
+environment supporting confidential containers.
 
 
-The life cycle of confidential container can be roughly divided into 4 execution stages:
+![Lifecycle Phases](./images/LifecyclePhases.svg)
 
-- DevSecOps : Preparation and build of container images and potentially the trusted boot image 
-  for the TEE. Signatures and encryption keys for containers are prepared and available to 
-  pre-container stage
-- Pre-container stage: occurs before pulling container image. This stage contains the build and
-initialization of TEEs. The involved components include the ones that directly associated with the
+Taking the four phases above we can map this as :
+
+#### Develop
+ - Preparation and build of container images
+ - Preparation and build of the trusted boot image for the TEE. 
+ - Signatures and encryption keys for containers are prepared and available
+ 
+````` Completing building the boot image triggers the next phase.`````
+
+#### Distribute
+The Distribute stage includes all preparations before the guest executes its first instructions, 
+and it will run some general and TEE-specific operations.
+- configuring the cluster with TEE
+- making the boot image available
+- taking initial measurements
+- provision secrets.
+- allocation of guest resource
+- loading guest fw and configuration occurs 
+- TEE-specific steps relating to preparing attestation/secrets etc
+
+The involved components include the ones that directly associated with the
 protections that TEEs provide (e.g, tdx seam-loader, tdx module, psp/sev firmware and so on),
 Pre-OS (e.g, guest firmware, guest kernel, initrd and so on) and specific components (e.g,
 kata-agent, attestation-agent and so on). Also includes preparing secrets for delivery to the TEE.
 
-- Container launch stage: refers to the procedure of image pulling, unpacking and launching.
+```The first instruction being executed within the trusted boot image happens in the next phase```
 
-- Workload operation stage: refers to the procedure since the workload in the container starts to
-run in TEEs.
+#### Deploy
+  - pod sandbox preparation
+  - "pre flight checks" include attestation measurment checks
+  - secret provisioning linked to boot attestation
+  
+  ```Receiving the request to pull and deploy a container happens in the runtime phase```
 
-These execution stages are sufficient to describe the execution of any forms of confidential
+
+#### Runtime
+- post boot attestation and secret provisioning
+- procedure of image pulling, unpacking and 
+  launching.
+- the workload in the container starts to  run in TEEs.
+
+
+These execution phases are sufficient to describe the execution of any forms of confidential
 container. 
 
+---
 ---
 
 ## Goals and not-goals
@@ -207,6 +243,7 @@ relate to confidential containers:
 
 ## Trust model
 
+The 
 [Wikipedia](https://en.wikipedia.org/wiki/Trust_boundary) defines trust 
 modeling as :
 
