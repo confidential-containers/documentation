@@ -85,17 +85,18 @@ maintaining the cluster.
 ### Workload Provider
 This persona has control over the code, containers and pods used to provide the Application or 
 Workload.
-They Define and builds an application or solution to provide business value to customers and 
+They define and build an application or solution to provide business value to customers and 
 clients.
 The workload provider and end user could be part of same company/organisation but 
 following the least privilege principle the application provider should not be able to view or 
 manipulate end user data without informed consent.
 - Owner of business logic containers. These may contain proprietary algorithms, models or secrets
 - Needs to prove to customer aspects of compliance
-- Defines what the solution requires in order to run (resources, utility containers/services, 
-  storage) and maintain compliance
+- Defines what the solution requires in order to run and maintain compliance (resources, utility 
+  containers/services,  storage)
 - provide the protected bootimage, or designate a trusted party to provide the protected 
-  bootimage; In addition, provide the attestation verification service, or designate a trusted 
+  bootimage; 
+- provide the attestation verification service, or designate a trusted 
   party  to provide the attestation verification service.
 
 Example : 3rd party software vendor
@@ -107,6 +108,7 @@ Owner of data used, and manipulated by the application.
 - uses and shares data with solutions 
 - least privilege principle means no visibility or manipulation of data is possible by 
   Orchestration Operator or Cloud Operator personas
+
 Example : The end user/customer for the application
 
 ### Persona Trust
