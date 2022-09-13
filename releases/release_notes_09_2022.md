@@ -259,7 +259,7 @@ We will now proceed to download and run an encrypted container image using the C
 
 For running one of the sample workloads provided in the previous step, but now taking advantage of a specific TEE vendor, the user will have to set the runtime class of the workload accordingly in the workload yaml file.
 
-In case the user wants to run the workload on a TDX capable hardware, using QEMU (which uses TDVF as its firmware) the kata-qemu-tdx runtime class must be specified.  In case the user prefers using Cloud Hypervisor (which uses TD-Shim as its firmware) then the kata-clh-tdx runtime class must be specified.
+In case the user wants to run the workload on a TDX capable hardware, using QEMU (which uses TDVF as its firmware) the `kata-qemu-tdx` runtime class must be specified.  In case the user prefers using Cloud Hypervisor (which uses TD-Shim as its firmware) then the `kata-clh-tdx` runtime class must be specified.
 
 * *TBD: do we have enough details on TDX and SEV-ES to write this section* *
 
