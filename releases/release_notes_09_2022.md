@@ -11,9 +11,9 @@ In this document we will take you through the content of this release, installat
 
 This release focused on the following:
 
-- **Simplicity** - using the operator to deploy and configure
+- **Simplicity** - Using the operator to deploy and configure
 - **Stability** - Supporting CI for the key workflows of the release
-- **Documentation** - details instruction of how to deploy and use this release
+- **Documentation** - Details instruction of how to deploy and use this release
 
 ## Use cases 
 
