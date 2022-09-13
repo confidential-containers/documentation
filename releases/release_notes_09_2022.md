@@ -3,7 +3,7 @@ Welcome :-).
 
 We are thrilled to share with you Confidential Containers (COCO) release X.X.X .
 
-In this document we will take you through the content of this release, installation instructions, deploying workloads and troubleshooting when things go wrong. 
+In this document we will take you through the content of this release, installation instructions, deploying workloads and troubleshooting if things go wrong. 
 
 # Release notes 
 
