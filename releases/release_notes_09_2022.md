@@ -271,12 +271,3 @@ In case the user wants to run the workload on a TDX capable hardware, using QEMU
 * *TBD: describe tools to debug problems, logs etc…* *
 
 
-
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
