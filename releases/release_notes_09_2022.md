@@ -222,7 +222,7 @@ For verifying that the container image doesn’t exist on the host you should lo
 root@cluster01-master-0:/home/ubuntu# crictl  -r  unix:///run/containerd/containerd.sock image ls | grep bitnami/nginx
 ```
 
-Create a pod yaml file as previously described (we named it nginx.yaml) 
+Create a pod YAML file as previously described (we named it `nginx.yaml`) .
 
 Create the workload: 
 ```
