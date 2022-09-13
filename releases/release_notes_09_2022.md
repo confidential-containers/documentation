@@ -1,5 +1,5 @@
 # About 
-Welcome :-). 
+Welcome :-)
 
 We are thrilled to share with you Confidential Containers (COCO) release X.X.X .
 
