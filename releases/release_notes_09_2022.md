@@ -59,7 +59,7 @@ You may get the following error when deploying the operator:
 Error from server (Timeout): error when creating "https://raw.githubusercontent.com/confidential-containers/operator/main/deploy/deploy.yaml": Timeout: request did not complete within requested timeout - context deadline exceeded
 ```
 
-This is a timeout on the kubectl side and simply run the command again which will solve the problem.
+This is a timeout on the `kubectl` side and simply run the command again which will solve the problem.
 
 After you deployed the operator and before you create the custom resource run the following command and observer the expected output (STATUS is ready):
 ```
