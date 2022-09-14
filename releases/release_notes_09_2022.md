@@ -11,7 +11,7 @@ In this document we will take you through the content of this release, installat
 
 This release focused on the following:
 
-- **Simplicity** - Using the operator to deploy and configure
+- **Simplicity** - Using a dedicated Kubernetes operator, the COCO operator, to deploy and configure
 - **Stability** - Supporting Continuous Integration (CI) for the key workflows of the release
 - **Documentation** - Details instruction of how to deploy and use this release
 
@@ -21,7 +21,7 @@ This release supports the following use cases:
 
 - Creating a sample COCO workload
 - Creating a COCO workload using a pre-existing encrypted image
-- Creating a COCO workload using a pre-existing encrypted image on CC HW
+- Creating a COCO workload using a pre-existing encrypted image on hardware with support for Confidential Computing (CC HW)
 - Building a new encrypted container image and deploying it as a COCO workload
 
 ## Limitations
