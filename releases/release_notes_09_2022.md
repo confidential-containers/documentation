@@ -28,9 +28,35 @@ This release supports the following use cases:
 
 The following are known limitations of this release:
 
-- A
-- B
-- C
+- Platform support is currently limited, and rapidly changing
+  * AMD SEV is tested by the CI (with some limitations regarding attestation, see below)
+  * Intel TDX is expected to work, but not currently tested in the CI
+  * S390x is not supported by the COCO operator
+- Attestation and key brokering support is still under development
+  * The disk-based key broker client (KBC) is still the primary method used for development, even if it will never be an acceptable approach in production.
+  * Remote attestion with simple-kbs, a simple key broker service (KBS) is expected to be merged just prior to release
+  * For developers, other KBCs can be experimented with.
+- Signature support is in a transitory state, and should be replaced in the next release
+  * We currently use skopeo, which requires kernel command-line options in order to do signature verification
+  * This is not the option retained for the longer term
+- The format of encrypted container images is still subject to change
+  * The oci-crypt container image format itself may still change
+  * The tools to generate images are not in their final form
+  * The image format itself is subject to change in upcoming releases
+  * Image repository support for encrypted images is unequal
+- COCO currently requires a custom build of `containerd`
+  * The COCO operator will deploy the correct version of `containerd` for you
+  * Changes are required to delegate `PullImage` to the agent in the virtual machine
+  * The required changes are not part of the vanilla `containerd`
+  * The final form of the required changes in `containerd` is expected to be different
+  * `crio` is not supported
+* COCO is not fully integrated with the orchestration ecosystem (Kubernetes, OpenShift)
+  * OpenShift is a non-started at the moment due to their dependency on CRIO
+  * Existing APIs do not fully support the COCO security and threat model
+  * Some commands accessing confidential data, such as `kubectl exec`, may either fail to work, or incorrectly expose information to the host
+  * Container image sharing is not possible in this release
+  * Container images are downloaded by the guest (with encryption), not  by the host
+  * As a result, the same image will be downloaded separately by every pod using it, not shared between pods on the same host.
 
 # Installing
 
