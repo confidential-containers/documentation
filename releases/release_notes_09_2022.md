@@ -22,6 +22,7 @@ This release supports the following use cases:
 - Creating a sample COCO workload
 - Creating a COCO workload using a pre-existing encrypted image
 - Creating a COCO workload using a pre-existing encrypted image on hardware with support for Confidential Computing (CC HW)
+  * Intel TDX is fully supported and tested in CI. Currently there are two choices for Intel TDX: QEMU+TDVF and CloudHypervisor + TD-Shim, both can be deployed using operator with `runtimeClassName`: `kata-qemu-tdx` and `kata-clh-tdx`
 - Building a new encrypted container image and deploying it as a COCO workload
 
 ## Limitations
@@ -30,7 +31,6 @@ The following are known limitations of this release:
 
 - Platform support is currently limited, and rapidly changing
   * AMD SEV is tested by the CI (with some limitations regarding attestation, see below)
-  * Intel TDX is expected to work, but not currently tested in the CI
   * S390x is not supported by the COCO operator
 - Attestation and key brokering support is still under development
   * The disk-based key broker client (KBC) is still the primary method used for development, even if it will never be an acceptable approach in production.
@@ -209,12 +209,12 @@ kata-qemu-tdx   kata-qemu-tdx   9m55s
 
 Details on each of the runtime classes:
 
--- kata - standard kata runtime using the QEMU hypervisor including all COCO building blocks for a non CC HW
--- kata-clh - standard kata runtime using the cloud hypervisor including all COCO building blocks for a non CC HW
--- kata-clh-tdx - using the Cloud Hypervisor, with TD-Shim, and support for Intel TDX CC HW
--- kata-qemu - same as kata
--- kata-qemu-tdx - using QEMU, with TDVF, and support for Intel TDX CC HW
--- * *TBD: we need to add the SEV runtimes as well* *
+* -- kata - standard kata runtime using the QEMU hypervisor including all COCO building blocks for a non CC HW
+* -- kata-clh - standard kata runtime using the cloud hypervisor including all COCO building blocks for a non CC HW
+* -- kata-clh-tdx - using the Cloud Hypervisor, with TD-Shim, and support for Intel TDX CC HW
+* -- kata-qemu - same as kata
+* -- kata-qemu-tdx - using QEMU, with TDVF, and support for Intel TDX CC HW
+* -- * *TBD: we need to add the SEV runtimes as well* *
 
 
 # Post installation configuration
