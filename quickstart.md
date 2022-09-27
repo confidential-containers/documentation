@@ -72,8 +72,9 @@ kubectl get pods -n confidential-containers-system
 ```
 Output:
 ```
-NAME                                              READY   STATUS    RESTARTS   AGE
-cc-operator-controller-manager-5df7584679-kffzf   2/2     Running   0          4m35s
+NAME                                             READY   STATUS    RESTARTS   AGE
+cc-operator-controller-manager-dc4846d94-g6trl   2/2     Running   0          35m
+cc-operator-pre-install-daemon-f2kv4             1/1     Running   0          35m
 ```
 
 ### Deploying the operator vs a custom resource
