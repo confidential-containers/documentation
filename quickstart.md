@@ -920,6 +920,10 @@ kubectl apply -f encrypted-image-tests.yaml
 
 Testing the SEV encrypted container launch can be completed by returning to the section on how to [Verify SEV Memory Encryption](#verify-sev-memory-encryption).
 
+## Signing the encrypted/unencrypted image and enable signature verification when running the workload
+
+Please refer to <https://github.com/confidential-containers/image-rs/blob/main/docs/quickstart/image_signing.md>
+
 # Trusted Ephemeral Storage for container images
 
 With CoCo, container images are pulled inside the guest VM.
