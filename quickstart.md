@@ -266,7 +266,7 @@ kubectl delete -f https://raw.githubusercontent.com/confidential-containers/oper
 ```
 and in it's place install the modified version with the sample container's decryption key:
 ```
-kubectl apply -f https://raw.githubusercontent.com/confidential-containers/operator/main/config/samples/ccruntime-ssh-demo.yaml
+kubectl apply -f https://raw.githubusercontent.com/confidential-containers/operator/main/config/samples/ccruntime-kata-containers-ssh-demo.yaml
 ```
 Wait until each pod has the STATUS of Running.
 ```
