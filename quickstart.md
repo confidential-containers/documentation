@@ -109,7 +109,7 @@ Details on each of the runtime classes:
 - *kata-qemu-sev* - using QEMU, and support for AMD SEV HW
 
 For the process based CoCo TEE (aka. `enclave-cc`) the operator setup steps are the same but instead
-of `ccruntime.yaml`, either `ccruntime-enclave-cc-sim.yaml` or `ccruntime-enclave-cc.yaml` for the
+of `ccruntime.yaml`, either `ccruntime-enclave-cc-SIM.yaml` or `ccruntime-enclave-cc-HW.yaml` for the
 **simulated** SGX mode build or **hardware** SGX mode build, respectively, should be used.
 
 These result in a `RuntimeClass` as follows:
@@ -184,7 +184,7 @@ root@cluster01-master-0:/home/ubuntu# crictl  -r  unix:///run/containerd/contain
 
 Following the previous example that used the `kata` runtime class, we setup a sample *hello world*
 workload using the `enclave-cc` runtime class for process based TEEs. The deployment below assumes
-the simulated SGX mode build (`ccruntime-enclave-cc-sim.yaml`) is installed by the operator. With that,
+the simulated SGX mode build (`ccruntime-enclave-cc-SIM.yaml`) is installed by the operator. With that,
 the workload can be deployed on a non-TEE system too.
 
 The example uses a trivial hello world C application:
@@ -211,7 +211,7 @@ Again, create a pod YAML file as previously described (this time we named it `en
 
 Create the workload:
 ```
-kubectl apply -f enclave-cc-pod-sim.yaml
+kubectl apply -f enclave-cc-pod-SIM.yaml
 ```
 Output:
 ```
