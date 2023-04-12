@@ -452,7 +452,7 @@ tee > ocicrypt.conf <<EOF
 EOF
 
 # encrypt the image
-OCICRYPT_KEYPROVIDER_CONFIG=ocicrypt.conf skopeo copy --insecure-policy --encryption-key provider:attestation-agent docker://library/busybox dir:busybox:encrypted
+OCICRYPT_KEYPROVIDER_CONFIG=ocicrypt.conf skopeo copy --insecure-policy --encryption-key provider:attestation-agent docker://library/busybox oci:busybox:encrypted
 ```
 
 The image will be encrypted, and things happens in the KBS cluster background include:
@@ -463,7 +463,7 @@ The image will be encrypted, and things happens in the KBS cluster background in
 Then push the image to registry:
 
 ```shell
-skopeo copy dir:busybox:encrypted [SCHEME]://[REGISTRY_URL]:encrypted
+skopeo copy oci:busybox:encrypted [SCHEME]://[REGISTRY_URL]:encrypted
 ```
 Be sure to replace `[SCHEME]` with registry scheme type like `docker`, replace `[REGISTRY_URL]` with the desired registry URL like `docker.io/encrypt_test/busybox`.
 
