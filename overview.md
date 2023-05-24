@@ -91,6 +91,7 @@ a Pod from the Kubernetes Node)?
 
 Initial exploration led to the realisation that this was not a problem possible to solve within the
 Kata Containers project alone. It raises considerations that need to be discussed and resolved in
-other areas of the cloud native stack, from container runtime to CSI to orchestration (kubelet) and
-brings in new projects or concerns such as attestation, reconsidering trust domains and least
-privilege capabilities for Kubernetes admins.
+other areas of the cloud native stack, from container runtime to [Container Storage
+Interface](https://github.com/confidential-containers/documentation/wiki/Glossary#container-storage-interface)
+(CSI) to orchestration (kubelet) and brings in new projects or concerns such as attestation,
+reconsidering trust domains and least privilege capabilities for Kubernetes admins.
