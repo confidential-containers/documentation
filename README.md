@@ -1,6 +1,13 @@
-![logo](./images/coco_logo.png)
 
-# Confidential Containers Documentation
+
+# THIS REPOSITORY IS ARCHIVED.
+
+# Please switch to [confidential-containers repository](https://github.com/confidential-containers/confidential-containers)
+
+----
+
+
+## Confidential Containers Documentation
 
 Confidential Containers is an open source community working to leverage 
 [Trusted Execution Environments](https://en.wikipedia.org/wiki/Trusted_execution_environment) 
